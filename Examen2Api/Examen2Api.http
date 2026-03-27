@@ -1,0 +1,81 @@
+@Examen2Api_HostAddress = http://localhost:5212
+
+### Empleados
+GET {{Examen2Api_HostAddress}}/api/empleados
+Accept: application/json
+
+### Get Activos
+GET {{Examen2Api_HostAddress}}/api/empleados/activos
+Accept: application/json
+
+### Post Empleado
+# @name createEmpleado
+POST {{Examen2Api_HostAddress}}/api/empleados
+Content-Type: application/json
+
+{
+    "nombre": "Abner",
+    "apellido": "Situ",
+    "documento": "12345678-0",
+    "fechaContratacion": "2024-01-15T00:00:00Z",
+    "departamento": "Desarrollo",
+    "puestoTrabajo": "Analista Senior",
+    "salarioBase": 2500.50
+}
+
+### Get Empleado by ID
+@idEmpleado = {{createEmpleado.response.body.data.id}}
+GET {{Examen2Api_HostAddress}}/api/empleados/{{idEmpleado}}
+Accept: application/json
+
+### Update Empleado
+PUT {{Examen2Api_HostAddress}}/api/empleados/{{idEmpleado}}
+Content-Type: application/json
+
+{
+    "nombre": "Abner Updated",
+    "apellido": "Situ",
+    "documento": "12345678-0",
+    "fechaContratacion": "2024-01-15T00:00:00Z",
+    "departamento": "Desarrollo",
+    "puestoTrabajo": "Lider Tecnico",
+    "salarioBase": 3000.00
+}
+
+### Logical Delete Empleado
+DELETE {{Examen2Api_HostAddress}}/api/empleados/{{idEmpleado}}
+Accept: application/json
+
+### Planillas
+GET {{Examen2Api_HostAddress}}/api/planillas
+Accept: application/json
+
+### Generar Planilla Automatica (Marzo 2025)
+# @name generarPlanilla
+POST {{Examen2Api_HostAddress}}/api/planillas/generar?periodo=Marzo 2025
+Accept: application/json
+
+### Get Planilla by ID
+@idPlanilla = {{generarPlanilla.response.body.data.id}}
+GET {{Examen2Api_HostAddress}}/api/planillas/{{idPlanilla}}
+Accept: application/json
+
+### Get Planillas por Periodo
+GET {{Examen2Api_HostAddress}}/api/planillas/periodo/Marzo 2025
+Accept: application/json
+
+### Update Estado Planilla (Pagada)
+PUT {{Examen2Api_HostAddress}}/api/planillas/{{idPlanilla}}/estado
+Content-Type: application/json
+
+{
+    "estado": "Pagada"
+}
+
+### No deletion of Pagada Planilla
+DELETE {{Examen2Api_HostAddress}}/api/planillas/{{idPlanilla}}
+Accept: application/json
+
+### Detalles Planilla (Filtrar por Planilla)
+GET {{Examen2Api_HostAddress}}/api/detallesplanilla/planilla/{{idPlanilla}}
+Accept: application/json
