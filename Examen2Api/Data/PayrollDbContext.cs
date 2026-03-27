@@ -8,25 +8,23 @@ namespace Examen2Api.Data
         public PayrollDbContext(DbContextOptions<PayrollDbContext> options) : base(options)
         {
         }
-
-        public DbSet<Empleado> Empleados { get; set; }
-        public DbSet<Planilla> Planillas { get; set; }
-        public DbSet<DetallePlanilla> DetallesPlanilla { get; set; }
+        public DbSet<EmployeeEntity> Empleados { get; set; }
+        public DbSet<Sheet> Planillas { get; set; }
+        public DbSet<SheetDetail> DetallesPlanilla { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configure unique index for Documento
-            modelBuilder.Entity<Empleado>()
-                .HasIndex(e => e.Documento)
+            modelBuilder.Entity<EmployeeEntity>()
+                .HasIndex(e => e.Document)
                 .IsUnique();
 
-            // Configure relationship between Planilla and DetallePlanilla
-            modelBuilder.Entity<DetallePlanilla>()
-                .HasOne(d => d.Planilla)
-                .WithMany(p => p.Detalles)
-                .HasForeignKey(d => d.PlanillaId);
+            
+            modelBuilder.Entity<SheetDetail>()
+                .HasOne(d => d.Payroll)
+                .WithMany(p => p.Details)
+                .HasForeignKey(d => d.PayrollId);
         }
     }
 }

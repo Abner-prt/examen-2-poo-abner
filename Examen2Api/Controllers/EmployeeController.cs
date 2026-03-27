@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Examen2Api.Dtos;
 using Examen2Api.Services;
@@ -8,41 +6,41 @@ namespace Examen2Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class EmpleadosController : ControllerBase
+    public class EmployeeController : ControllerBase
     {
-        private readonly IEmpleadoService _service;
+        private readonly IEmployeeService _service;
 
-        public EmpleadosController(IEmpleadoService service)
+        public EmployeeController(IEmployeeService service)
         {
             _service = service;
         }
-
+    
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<EmpleadoDto>>> GetAll()
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetAll()
         {
             var empleados = await _service.GetAllAsync();
             return Ok(empleados);
         }
 
         [HttpGet("activos")]
-        public async Task<ActionResult<IEnumerable<EmpleadoDto>>> GetActivos()
+        public async Task<ActionResult<IEnumerable<EmployeeDto>>> GetActivos()
         {
             var empleados = await _service.GetActivosAsync();
             return Ok(empleados);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<EmpleadoDto>> GetById(int id)
+        public async Task<ActionResult<EmployeeDto>> GetById(int id)
         {
             var empleado = await _service.GetByIdAsync(id);
             if (empleado == null)
-                return NotFound(ApiResponse<EmpleadoDto>.FailResponse("Empleado no encontrado"));
+                return NotFound(ApiResponse<EmployeeDto>.FailResponse("Empleado no encontrado"));
 
             return Ok(empleado);
         }
 
         [HttpPost]
-        public async Task<ActionResult<ApiResponse<EmpleadoDto>>> Create(EmpleadoCreateUpdateDto dto)
+        public async Task<ActionResult<ApiResponse<EmployeeDto>>> Create(EmployeeCreateUpdateDto dto)
         {
             var result = await _service.CreateAsync(dto);
             if (!result.Success)
@@ -52,7 +50,7 @@ namespace Examen2Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<ApiResponse<EmpleadoDto>>> Update(int id, EmpleadoCreateUpdateDto dto)
+        public async Task<ActionResult<ApiResponse<EmployeeDto>>> Update(int id, EmployeeCreateUpdateDto dto)
         {
             var result = await _service.UpdateAsync(id, dto);
             if (!result.Success)

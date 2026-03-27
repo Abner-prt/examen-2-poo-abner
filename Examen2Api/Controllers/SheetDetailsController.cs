@@ -10,9 +10,9 @@ namespace Examen2Api.Controllers
     [Route("api/[controller]")]
     public class DetallePlanillaController : ControllerBase
     {
-        private readonly IDetallePlanillaService _service;
+        private readonly ISheetDetailService _service;
 
-        public DetallePlanillaController(IDetallePlanillaService service)
+        public DetallePlanillaController(ISheetDetailService service)
         {
             _service = service;
         }
@@ -59,7 +59,7 @@ namespace Examen2Api.Controllers
                 return BadRequest(result);
 
             return Ok(result);
-        }
+        } 
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<ApiResponse<bool>>> Delete(int id)

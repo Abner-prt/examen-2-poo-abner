@@ -1,0 +1,18 @@
+meta {
+  name:  Crear 
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://localhost:7091/api/planillas
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "period": "2024-03",
+    "paymentDate": "2024-03-31T00:00:00Z"
+  }
+}

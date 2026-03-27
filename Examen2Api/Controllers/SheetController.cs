@@ -10,9 +10,9 @@ namespace Examen2Api.Controllers
     [Route("api/[controller]")]
     public class PlanillasController : ControllerBase
     {
-        private readonly IPlanillaService _service;
+        private readonly ISheetService _service;
 
-        public PlanillasController(IPlanillaService service)
+        public PlanillasController(ISheetService service)
         {
             _service = service;
         }
@@ -82,7 +82,7 @@ namespace Examen2Api.Controllers
         }
 
         [HttpPost("generar")]
-        public async Task<ActionResult<ApiResponse<PlanillaDto>>> Generar(string periodo)
+        public async Task<ActionResult<ApiResponse<PlanillaDto>>> Generar([FromQuery] string periodo = null)
         {
             var result = await _service.GenerarPlanillaAutomatica(periodo);
             if (!result.Success)

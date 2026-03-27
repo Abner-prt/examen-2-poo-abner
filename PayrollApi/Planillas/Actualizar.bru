@@ -1,0 +1,18 @@
+meta {
+  name: Actualizar 
+  type: http
+  seq: 4
+}
+
+put {
+  url: https://localhost:7091/api/planillas/1
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "period": "2024-03",
+    "paymentDate": "2024-04-05T00:00:00Z"
+  }
+}

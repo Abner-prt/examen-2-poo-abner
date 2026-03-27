@@ -1,0 +1,17 @@
+meta {
+  name: Actualizar Estado 
+  type: http
+  seq: 7
+}
+
+put {
+  url: https://localhost:7091/api/planillas/1/estado
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "estado": "Pagada"
+  }
+}

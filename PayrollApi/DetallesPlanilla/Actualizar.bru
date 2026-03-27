@@ -1,0 +1,23 @@
+meta {
+  name: Actualizar
+  type: http
+  seq: 4
+}
+
+put {
+  url: https://localhost:7091/api/detallesplanilla/1
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "payrollId": 1,
+    "employeeId": 1,
+    "extraHours": 4,
+    "extraHoursAmount": 30.00,
+    "bonuses": 20.00,
+    "deductions": 5.00,
+    "comments": "Actualizacion de horas"
+  }
+}

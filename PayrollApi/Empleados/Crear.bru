@@ -1,0 +1,23 @@
+meta {
+  name: Crear
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://localhost:7091/api/empleados
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Juan",
+    "lastName": "Perez",
+    "document": "12345678-9",
+    "hireDate": "2024-03-01T00:00:00Z",
+    "department": "TI",
+    "position": "Developer",
+    "salaryBase": 1500.00
+  }
+}

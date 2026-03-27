@@ -1,0 +1,23 @@
+meta {
+  name: Crear 
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://localhost:7091/api/detallesplanilla
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "payrollId": 1,
+    "employeeId": 1,
+    "extraHours": 2,
+    "extraHoursAmount": 15.00,
+    "bonuses": 10.00,
+    "deductions": 0.00,
+    "comments": "Detalle manual"
+  }
+}

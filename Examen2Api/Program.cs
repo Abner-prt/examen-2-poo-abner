@@ -13,9 +13,9 @@ builder.Services.AddDbContext<PayrollDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Dependency Injection
-builder.Services.AddScoped<IEmpleadoService, EmpleadoService>();
-builder.Services.AddScoped<IPlanillaService, PlanillaService>();
-builder.Services.AddScoped<IDetallePlanillaService, DetallePlanillaService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<ISheetService, SheetService>();
+builder.Services.AddScoped<ISheetDetailService, SheetDetailService>();
 
 var app = builder.Build();
 
@@ -29,11 +29,11 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
-// Ensure Database is created
+// Apply pending migrations or create DB if not exists
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<PayrollDbContext>();
-    context.Database.EnsureCreated();
+    context.Database.Migrate();
 }
 
 app.Run();

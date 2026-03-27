@@ -1,0 +1,23 @@
+meta {
+  name: Actualizar
+  type: http
+  seq: 4
+}
+
+put {
+  url: https://localhost:7091/api/empleados/1
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Juan Editado",
+    "lastName": "Perez",
+    "document": "12345678-9",
+    "hireDate": "2024-03-01T00:00:00Z",
+    "department": "TI",
+    "position": "Sr Developer",
+    "salaryBase": 1800.00
+  }
+}
